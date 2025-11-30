@@ -422,19 +422,18 @@
                 return;
             }
 
+            // 1. Lock the button
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            // --- IF YOU ARE ON VERCEL, THIS URL MIGHT FAIL DUE TO CORS ---
-            // If it fails, use the "Vercel Fix" below.
-            var webhookUrl = "/api/submit";
-            
-            // To use the Vercel Fix (Step 2 below), uncomment this line instead:
-            // var webhookUrl = "/api/submit"; 
+            // 2. Send Data to Make.com (using 'no-cors' to avoid errors on Vercel)
+            // This is the link you provided:
+            var webhookUrl = "https://hook.us2.make.com/yhipmbuhx4e3ijnhh5bcl2038ds7gura";
 
             try {
                 await fetch(webhookUrl, {
                     method: "POST",
+                    mode: "no-cors", // <--- IMPORTANT: Prevents "CORS" errors in browser console
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         name: name,
@@ -444,12 +443,16 @@
                     })
                 });
             } catch (error) {
-                console.error("Make.com skipped due to error (likely CORS):", error);
+                console.error("Webhook error:", error);
+                // We proceed to Stripe even if Make fails
             }
 
-            // Redirect to Stripe
+            // 3. Redirect to Stripe
+            // IMPORTANT: Make sure this link is your TEST MODE link if you are testing!
+            // I kept the link from your previous code:
             var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
             
+            // Prefill email so they don't have to type it again in Stripe
             if(email) {
                 window.location.href = stripeLink + "?prefilled_email=" + encodeURIComponent(email);
             } else {
