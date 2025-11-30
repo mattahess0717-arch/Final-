@@ -1,5 +1,7 @@
 
-<!DOCTYPE html>
+
+
+       <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -437,8 +439,8 @@
             };
 
             // 3. Send Data to Make.com 
-            // - REMOVED 'no-cors' so Make.com can read the JSON data
-            // - Added 'keepalive: true' to help the request survive page changes
+            // - Using Standard JSON format (Removed 'no-cors' so Make.com can read it)
+            // - Added 'keepalive' so it doesn't die when the page closes
             try {
                 fetch(webhookUrl, {
                     method: "POST",
@@ -450,8 +452,8 @@
                 console.error("Webhook error:", error);
             }
 
-            // 4. Redirect to Stripe (Wait 2 Seconds)
-            // This delay is CRITICAL to let the data send before the page closes
+            // 4. Redirect to Stripe (2 Second Delay)
+            // This delay is NECESSARY to let the data reach Make.com
             var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
             
             setTimeout(function() {
@@ -460,7 +462,7 @@
                 } else {
                     window.location.href = stripeLink;
                 }
-            }, 2000); // 2000ms = 2 Seconds
+            }, 2000); 
         }
     </script>
 </body>
