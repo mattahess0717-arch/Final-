@@ -1,7 +1,4 @@
-
-
-
-       <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -414,12 +411,13 @@
             }, 100);
         });
 
-        async function handlePayment() {
+        function handlePayment() {
             var name = document.getElementById("user-name").value;
             var email = document.getElementById("user-email").value.trim();
             var phone = document.getElementById("user-phone").value;
             var btn = document.getElementById("submit-btn");
 
+            // Simple Validation
             if(!email) {
                 alert("Please enter a valid email address.");
                 return;
@@ -429,31 +427,35 @@
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            // 2. Prepare Data for Make.com
+            // 2. Prepare Data (Use URLSearchParams for reliability with sendBeacon)
             var webhookUrl = "https://hook.us2.make.com/yhipmbuhx4e3ijnhh5bcl2038ds7gura";
-            var data = {
-                name: name,
-                email: email,
-                phone: phone,
-                source: "90 Day Challenge Checkout"
-            };
+            var formData = new URLSearchParams();
+            formData.append("name", name);
+            formData.append("email", email);
+            formData.append("phone", phone);
+            formData.append("source", "90 Day Challenge Checkout");
 
-            // 3. Send Data to Make.com 
-            // - Using Standard JSON format (Removed 'no-cors' so Make.com can read it)
-            // - Added 'keepalive' so it doesn't die when the page closes
-            try {
-                fetch(webhookUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data),
-                    keepalive: true 
-                });
-            } catch (error) {
-                console.error("Webhook error:", error);
+            // 3. Send Data using sendBeacon (This survives the redirect)
+            // This is the "Magic Fix" for page redirects
+            var sent = false;
+            if (navigator.sendBeacon) {
+                sent = navigator.sendBeacon(webhookUrl, formData);
             }
 
-            // 4. Redirect to Stripe (2 Second Delay)
-            // This delay is NECESSARY to let the data reach Make.com
+            // If sendBeacon fails or isn't supported, fallback to standard fetch
+            if (!sent) {
+                console.log("Beacon failed/unsupported, trying fetch...");
+                fetch(webhookUrl, {
+                    method: "POST",
+                    body: formData,
+                    keepalive: true,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).catch(e => console.error(e));
+            }
+
+            // 4. Redirect to Stripe (1.5 Second Delay)
             var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
             
             setTimeout(function() {
@@ -462,7 +464,7 @@
                 } else {
                     window.location.href = stripeLink;
                 }
-            }, 2000); 
+            }, 1500); 
         }
     </script>
 </body>
