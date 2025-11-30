@@ -283,17 +283,14 @@
             <h2>1. Contact Information</h2>
             <div class="input-group">
                 <label>Full Name</label>
-                <!-- ADDED ID="user-name" HERE -->
                 <input type="text" id="user-name" placeholder="Enter your full name">
             </div>
             <div class="input-group">
                 <label>Email Address</label>
-                <!-- EMAIL ALREADY HAD ID -->
                 <input type="email" id="user-email" placeholder="Enter your best email address">
             </div>
             <div class="input-group">
                 <label>Phone Number</label>
-                <!-- ADDED ID="user-phone" HERE -->
                 <input type="tel" id="user-phone" placeholder="(555) 555-5555">
             </div>
 
@@ -414,35 +411,31 @@
             }, 100);
         });
 
-        // ASYNC Function to handle Make.com webhook then Stripe
         async function handlePayment() {
-            // 1. Gather Data
             var name = document.getElementById("user-name").value;
             var email = document.getElementById("user-email").value.trim();
             var phone = document.getElementById("user-phone").value;
             var btn = document.getElementById("submit-btn");
 
-            // Simple Validation
             if(!email) {
                 alert("Please enter a valid email address.");
                 return;
             }
 
-            // Update button text so user knows something is happening
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            // 2. Send to Make.com Webhook
-            // YOUR WEBHOOK IS NOW INSERTED BELOW:
-            var webhookUrl = "https://hook.us2.make.com/wfr5ic7hxszq1un5hfrkzofj61q1seir";
+            // --- IF YOU ARE ON VERCEL, THIS URL MIGHT FAIL DUE TO CORS ---
+            // If it fails, use the "Vercel Fix" below.
+            var webhookUrl = "/api/submit";
+            
+            // To use the Vercel Fix (Step 2 below), uncomment this line instead:
+            // var webhookUrl = "/api/submit"; 
 
             try {
-                // Send data using Fetch API
                 await fetch(webhookUrl, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         name: name,
                         email: email,
@@ -451,11 +444,10 @@
                     })
                 });
             } catch (error) {
-                console.error("Error sending to Make:", error);
-                // We do NOT stop the checkout if Make fails. We still want the money.
+                console.error("Make.com skipped due to error (likely CORS):", error);
             }
 
-            // 3. Redirect to Stripe
+            // Redirect to Stripe
             var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
             
             if(email) {
