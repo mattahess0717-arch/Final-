@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>90 Day Cashflow Challenge</title>
     <style>
         :root {
@@ -15,6 +15,11 @@
             --glass: rgba(30, 41, 59, 0.7);
         }
 
+        /* GLOBAL RESET FOR MOBILE SIZING */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
@@ -24,13 +29,11 @@
             line-height: 1.6;
             overflow-x: hidden;
            
-            /* --- FADE IN EFFECT SETTINGS START --- */
-            opacity: 0; /* Start invisible */
-            transition: opacity 1.5s ease-in-out; /* 1.5 second fade duration */
-            /* --- FADE IN EFFECT SETTINGS END --- */
+            /* --- FADE IN EFFECT SETTINGS --- */
+            opacity: 0; 
+            transition: opacity 1.5s ease-in-out; 
         }
 
-        /* This class is added by JavaScript to make the page visible */
         body.loaded {
             opacity: 1;
         }
@@ -90,7 +93,7 @@
             margin: 0 auto 30px;
         }
 
-        /* VIDEO WRAPPER with Glow */
+        /* VIDEO WRAPPER */
         .video-wrapper {
             background: #000;
             border: 1px solid #334155;
@@ -101,19 +104,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); /* Blue Glow */
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); 
             position: relative;
             overflow: hidden;
         }
         
-        /* Ensures the iframe fills the container fully */
         .video-wrapper iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* STATS BAR (2 Hours / Anyone) */
+        /* STATS BAR */
         .stats-bar {
             display: flex;
             justify-content: center;
@@ -133,7 +135,7 @@
             gap: 10px;
         }
 
-        /* QUOTE CARD - GLASSMORPHISM */
+        /* GLASS CARDS */
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(10px);
@@ -166,6 +168,11 @@
             background: rgba(0,0,0,0.3);
             border-radius: 15px;
             border: 1px dashed var(--accent);
+            display: flex; /* Added for mobile alignment */
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         /* REQUIREMENTS GRID */
@@ -190,10 +197,8 @@
         .req-title { font-weight: bold; color: white; font-size: 18px; margin-bottom: 10px; }
         .req-desc { font-size: 14px; color: var(--text-gray); }
 
-        /* TESTIMONIALS SECTION (NEW) */
-        .testimonials-wrapper {
-            margin: 80px 0;
-        }
+        /* TESTIMONIALS SECTION */
+        .testimonials-wrapper { margin: 80px 0; }
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -237,7 +242,7 @@
             box-shadow: 0 0 30px rgba(74, 222, 128, 0.6);
         }
 
-        /* DELIVERABLES LIST */
+        /* CHECKLIST */
         .check-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -257,7 +262,7 @@
             gap: 10px;
         }
 
-        /* FOUNDER FOOTER */
+        /* FOOTER */
         .founder-signoff {
             margin-top: 60px;
             padding-top: 30px;
@@ -267,13 +272,39 @@
             text-align: center;
         }
 
-        /* RESPONSIVE */
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            h1 { font-size: 36px; }
-            .check-list { grid-template-columns: 1fr; }
-            .big-math { font-size: 20px; }
-            .stats-bar { flex-direction: column; align-items: center; gap: 10px; }
+            /* Shrink the main headline */
+            h1 { font-size: 34px; margin-top: 5px; }
+            
+            /* Add breathing room to container */
+            .container { padding: 15px; }
+            
+            /* Reduce Hero padding */
+            .hero { padding: 40px 15px 40px; }
+
+            /* Make Stats Stack Vertically */
+            .stats-bar { flex-direction: column; width: 100%; gap: 10px; }
             .stat-pill { width: 100%; justify-content: center; }
+
+            /* Fix the Checklist grid */
+            .check-list { grid-template-columns: 1fr; }
+
+            /* Fix the Math Section (Stack it) */
+            .big-math { 
+                font-size: 22px; 
+                flex-direction: column; 
+                gap: 5px; 
+                padding: 25px 15px;
+            }
+            .math-section { padding: 30px 15px; }
+
+            /* Adjust Button for thumb-click */
+            .btn-main { width: 100%; padding: 20px; font-size: 18px; }
+
+            /* Fix Quote Card Text */
+            .glass-card { padding: 20px; }
+            .quote-icon { font-size: 30px; }
         }
     </style>
 </head>
@@ -323,10 +354,10 @@
     <div class="container">
         <div class="glass-card">
             <div class="quote-icon">“</div>
-            <p style="font-size: 18px; line-height: 1.8; margin-bottom: 20px;">
+            <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
                 <strong style="color:white;">The first 2 weeks are FREE.</strong> We’ll be there the whole way to make sure you're set up. It’s super easy—the first week is just setting up the software. Once you got it all set up, really it only takes 2 days.
             </p>
-            <p style="font-size: 18px; line-height: 1.8;">
+            <p style="font-size: 18px; line-height: 1.6;">
                 My first 5 days after setting everything up I was already making <span style="color:var(--accent); font-weight:bold;">2K/mo</span> after selling to 5 people a day. It really works for itself.
             </p>
             <div style="display:flex; align-items:center; gap:15px; margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
@@ -372,9 +403,9 @@
             <p style="color:var(--text-gray);">You focus on talking to people. The system does the rest.</p>
            
             <div class="big-math">
-                $197<span style="font-size:18px; color:#aaa;">/mo</span>
+                <span>$197<small style="color:#aaa;">/mo</small></span>
                 <span style="color:var(--primary);">x</span>
-                2 Clients<span style="font-size:18px; color:#aaa;">/day</span>
+                <span>2 Clients<small style="color:#aaa;">/day</small></span>
                 <span style="color:var(--primary);">=</span>
                 <span style="color:var(--accent); text-shadow: 0 0 20px rgba(74,222,128,0.3);">$11,820/mo</span>
             </div>
@@ -397,7 +428,7 @@
                 <div class="testimonial-card">
                     <div class="t-stars">⭐⭐⭐⭐⭐</div>
                     <div class="t-quote">
-                        “As someone with a full-time job, I needed something automated. Cashflow Challenge was perfect. Gavin showed me exactly how to set up the GHL automations so the business basically runs itself, and Mattie helped me fine-tune my offer. Within a month, I had a fully functioning reselling business generating consistent cashflow. It’s honestly life-changing.”
+                        “As someone with a full-time job, I needed something automated. Cashflow Challenge was perfect. Gavin showed me exactly how to set up the GHL automations so the business basically runs itself. Within a month, I had a fully functioning reselling business generating consistent cashflow.”
                     </div>
                     <div class="t-profile">
                         <div class="t-img">👨‍💼</div> <!-- Replace with Image -->
@@ -412,7 +443,7 @@
                 <div class="testimonial-card">
                     <div class="t-stars">⭐⭐⭐⭐⭐</div>
                     <div class="t-quote">
-                        “I’ve tried a lot of courses, but nothing compares to Cashflow Challenge. Mattie and Gavin actually teach—they don’t just throw videos at you. Their step-by-step system for reselling through GHL helped me sign my first two clients in the first week. The support, clarity, and community make all the difference. If you want a real, scalable side hustle, this is it.”
+                        “I’ve tried a lot of courses, but nothing compares to Cashflow Challenge. Mattie and Gavin actually teach—they don’t just throw videos at you. Their step-by-step system for reselling through GHL helped me sign my first two clients in the first week. If you want a real, scalable side hustle, this is it.”
                     </div>
                     <div class="t-profile">
                         <div class="t-img">👩‍💻</div> <!-- Replace with Image -->
@@ -427,7 +458,7 @@
                 <div class="testimonial-card">
                     <div class="t-stars">⭐⭐⭐⭐⭐</div>
                     <div class="t-quote">
-                        “Before joining the Cashflow Challenge, I had no clue how to start an online business. Mattie and Gavin broke everything down so clearly that even as a complete beginner, I was able to launch my offer in just a few days. The plug-and-play GHL setup made reselling simple, and I earned back my entire investment in the first 10 days. This is the most straightforward online income system I’ve ever seen.”
+                        “Before joining the Cashflow Challenge, I had no clue how to start an online business. Mattie and Gavin broke everything down so clearly that even as a complete beginner, I was able to launch my offer in just a few days. I earned back my entire investment in the first 10 days.”
                     </div>
                     <div class="t-profile">
                         <div class="t-img">🚀</div> <!-- Replace with Image -->
