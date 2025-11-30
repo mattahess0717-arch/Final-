@@ -122,8 +122,33 @@
         }
         input:focus { outline: none; border-color: var(--primary); }
 
-        .row { display: flex; gap: 20px; }
-        .col { flex: 1; }
+        /* LEGAL CHECKBOX STYLE */
+        .legal-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .legal-checkbox input {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        .legal-checkbox label {
+            font-size: 11px;
+            color: var(--text-gray);
+            line-height: 1.5;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
 
         /* BUTTON */
         .btn-checkout {
@@ -294,8 +319,16 @@
                 <input type="tel" id="user-phone" placeholder="(555) 555-5555">
             </div>
 
+            <!-- LEGAL COMPLIANCE CHECKBOX -->
+            <div class="legal-checkbox">
+                <input type="checkbox" id="sms-consent" required>
+                <label for="sms-consent">
+                    I agree to receive SMS notifications, alerts & occasional marketing from <strong>90 Day Cashflow Challenge</strong>. Message frequency varies. Msg & Data rates may apply. Text HELP for help. Reply STOP to unsubscribe.
+                </label>
+            </div>
+
             <!-- CHECKOUT BUTTON -->
-            <button class="btn-checkout" id="submit-btn" onclick="handlePayment()" style="margin-top: 30px;">
+            <button class="btn-checkout" id="submit-btn" onclick="handlePayment()">
                 Complete Order - $1.00
             </button>
             <p style="text-align: center; font-size: 12px; color: var(--text-gray); margin-top: 15px;">
@@ -415,19 +448,26 @@
             var name = document.getElementById("user-name").value;
             var email = document.getElementById("user-email").value.trim();
             var phone = document.getElementById("user-phone").value;
+            var consent = document.getElementById("sms-consent");
             var btn = document.getElementById("submit-btn");
 
-            // Simple Validation
+            // 1. Validation for SMS Consent
+            if (!consent.checked) {
+                alert("Please check the box to agree to SMS notifications to continue.");
+                return; // Stop the script here
+            }
+
+            // 2. Simple Email Validation
             if(!email) {
                 alert("Please enter a valid email address.");
                 return;
             }
 
-            // 1. Lock the button
+            // 3. Lock the button
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            // 2. Prepare Data (Use URLSearchParams for reliability with sendBeacon)
+            // 4. Prepare Data
             var webhookUrl = "https://hook.us2.make.com/yhipmbuhx4e3ijnhh5bcl2038ds7gura";
             var formData = new URLSearchParams();
             formData.append("name", name);
@@ -435,16 +475,14 @@
             formData.append("phone", phone);
             formData.append("source", "90 Day Challenge Checkout");
 
-            // 3. Send Data using sendBeacon (This survives the redirect)
-            // This is the "Magic Fix" for page redirects
+            // 5. Send Data using sendBeacon
             var sent = false;
             if (navigator.sendBeacon) {
                 sent = navigator.sendBeacon(webhookUrl, formData);
             }
 
-            // If sendBeacon fails or isn't supported, fallback to standard fetch
+            // Fallback to fetch if beacon fails
             if (!sent) {
-                console.log("Beacon failed/unsupported, trying fetch...");
                 fetch(webhookUrl, {
                     method: "POST",
                     body: formData,
@@ -455,7 +493,7 @@
                 }).catch(e => console.error(e));
             }
 
-            // 4. Redirect to Stripe (1.5 Second Delay)
+            // 6. Redirect to Stripe (1.5 Second Delay)
             var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
             
             setTimeout(function() {
