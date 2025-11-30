@@ -306,10 +306,13 @@
             </div>
 
             <h2>1. Contact Information</h2>
+            
+            <!-- ADDED NAME FIELD HERE -->
             <div class="input-group">
                 <label>Full Name</label>
                 <input type="text" id="user-name" placeholder="Enter your full name">
             </div>
+
             <div class="input-group">
                 <label>Email Address</label>
                 <input type="email" id="user-email" placeholder="Enter your best email address">
@@ -470,7 +473,7 @@
             // 4. Prepare Data
             var webhookUrl = "https://hook.us2.make.com/yhipmbuhx4e3ijnhh5bcl2038ds7gura";
             var formData = new URLSearchParams();
-            formData.append("name", name);
+            formData.append("name", name); // Added Name to payload
             formData.append("email", email);
             formData.append("phone", phone);
             formData.append("source", "90 Day Challenge Checkout");
