@@ -125,18 +125,6 @@
         .row { display: flex; gap: 20px; }
         .col { flex: 1; }
 
-        /* CREDIT CARD MOCKUP */
-        .card-element {
-            background: #1e293b;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .card-icon { color: var(--text-gray); font-size: 20px; }
-
         /* BUTTON */
         .btn-checkout {
             background: linear-gradient(90deg, #28a745, #22c55e);
@@ -294,39 +282,25 @@
             </div>
             <div class="input-group">
                 <label>Email Address</label>
-                <input type="email" placeholder="Enter your best email address">
+                <!-- ADDED ID HERE SO WE CAN GRAB THE EMAIL -->
+                <input type="email" id="user-email" placeholder="Enter your best email address">
             </div>
             <div class="input-group">
                 <label>Phone Number</label>
                 <input type="tel" placeholder="(555) 555-5555">
             </div>
 
-            <h2 style="margin-top: 40px;">2. Payment Details</h2>
-            <div class="input-group">
-                <label>Card Number</label>
-                <div class="card-element">
-                    <span class="card-icon">💳</span>
-                    <input type="text" placeholder="0000 0000 0000 0000" style="border:none; background:transparent; padding:0;">
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col">
-                    <label>Expiry Date</label>
-                    <input type="text" placeholder="MM / YY">
-                </div>
-                <div class="col">
-                    <label>CVC Code</label>
-                    <input type="text" placeholder="123">
-                </div>
-            </div>
+            <!-- 
+               REMOVED FAKE CREDIT CARD FIELDS 
+               (This is handled by Stripe on the next page)
+            -->
 
             <!-- CHECKOUT BUTTON -->
-            <button class="btn-checkout" style="margin-top: 30px;">
+            <button class="btn-checkout" onclick="handlePayment()" style="margin-top: 30px;">
                 Complete Order - $1.00
             </button>
             <p style="text-align: center; font-size: 12px; color: var(--text-gray); margin-top: 15px;">
-                By clicking the button above, you agree to our Terms of Service. You will be charged $1 today, and $197/mo after 14 days unless cancelled.
+                By clicking the button above, you agree to our Terms of Service. You will be redirected to Stripe to securely complete your $1 payment.
             </p>
         </div>
 
@@ -430,13 +404,31 @@
         </div>
     </div>
 
-    <!-- SCRIPT FOR FADE IN -->
+    <!-- SCRIPT FOR FADE IN & STRIPE REDIRECT -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 document.body.classList.add("loaded");
             }, 100);
         });
+
+        function handlePayment() {
+            // Your Specific Stripe Link
+            var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
+            
+            // Get the email input
+            var emailInput = document.getElementById("user-email");
+            var email = emailInput.value.trim();
+
+            // If user typed an email, add it to the Stripe URL
+            if(email) {
+                // Encode the email so special characters don't break the link
+                window.location.href = stripeLink + "?prefilled_email=" + encodeURIComponent(email);
+            } else {
+                // Otherwise just go to the link
+                window.location.href = stripeLink;
+            }
+        }
     </script>
 </body>
 </html>
