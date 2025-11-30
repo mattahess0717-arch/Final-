@@ -23,7 +23,7 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
-            
+           
             /* --- FADE IN EFFECT SETTINGS START --- */
             opacity: 0; /* Start invisible */
             transition: opacity 1.5s ease-in-out; /* 1.5 second fade duration */
@@ -105,6 +105,13 @@
             position: relative;
             overflow: hidden;
         }
+        
+        /* Ensures the iframe fills the container fully */
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
         /* STATS BAR (2 Hours / Anyone) */
         .stats-bar {
@@ -176,7 +183,7 @@
             border: 1px solid #334155;
             transition: transform 0.3s;
         }
-        
+       
         .req-card:hover { transform: translateY(-5px); border-color: var(--primary); }
 
         .req-icon { font-size: 30px; margin-bottom: 15px; display: block; }
@@ -276,11 +283,11 @@
     <div class="hero">
         <div class="container">
             <div class="badge">🔥 Zero Fluff • Zero BS • Results Only</div>
-            
+           
             <h1>Create A Cashflow Asset <br>In Just <span class="gradient-text">2 Hours A Day</span></h1>
-            
+           
             <p class="sub-headline">
-                Engineered to scale from solo operators to mass-market rollouts. 
+                Engineered to scale from solo operators to mass-market rollouts.
                 <strong style="color:white;">Anyone can do this.</strong> Start your 14-day trial for $1.
             </p>
 
@@ -290,12 +297,18 @@
                 <div class="stat-pill">📱 Work From Anywhere</div>
                 <div class="stat-pill">⚡ First Result in 14 Days</div>
             </div>
-            
+           
             <!-- VIDEO PLACEHOLDER -->
             <div class="video-wrapper">
-                <div style="color: #64748b; font-weight: bold;">
-                    [ INSERT VIDEO ELEMENT HERE ]
-                </div>
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/PNkmR24hGW0?start=17" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
             </div>
 
             <!-- CTA -->
@@ -357,15 +370,15 @@
         <div class="math-section">
             <h2 style="margin:0; color:white;">📈 Why It Works (The Math)</h2>
             <p style="color:var(--text-gray);">You focus on talking to people. The system does the rest.</p>
-            
+           
             <div class="big-math">
-                $197<span style="font-size:18px; color:#aaa;">/mo</span> 
-                <span style="color:var(--primary);">x</span> 
-                2 Clients<span style="font-size:18px; color:#aaa;">/day</span> 
-                <span style="color:var(--primary);">=</span> 
+                $197<span style="font-size:18px; color:#aaa;">/mo</span>
+                <span style="color:var(--primary);">x</span>
+                2 Clients<span style="font-size:18px; color:#aaa;">/day</span>
+                <span style="color:var(--primary);">=</span>
                 <span style="color:var(--accent); text-shadow: 0 0 20px rgba(74,222,128,0.3);">$11,820/mo</span>
             </div>
-            
+           
             <p style="font-size:14px; margin-top:20px; color: #cbd5e1;">
                 Create a self-sustaining cashflow asset in 90 days. <br>
                 <strong>First $400/mo recurring likely after just 14 days.</strong>
@@ -378,7 +391,7 @@
         <div class="testimonials-wrapper">
             <h2 style="text-align: center;">Real Results From Real People</h2>
             <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px;">No fluff. Just people applying the system.</p>
-            
+           
             <div class="testimonial-grid">
                 <!-- Testimonial 1 -->
                 <div class="testimonial-card">
