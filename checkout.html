@@ -426,38 +426,40 @@
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            // 2. Send Data to Make.com (using 'no-cors' to avoid errors on Vercel)
-            // This is the link you provided:
+            // 2. Prepare Data for Make.com
             var webhookUrl = "https://hook.us2.make.com/yhipmbuhx4e3ijnhh5bcl2038ds7gura";
+            var data = {
+                name: name,
+                email: email,
+                phone: phone,
+                source: "90 Day Challenge Checkout"
+            };
 
+            // 3. Send Data to Make.com 
+            // - 'keepalive: true' allows the request to finish even if the page redirects
+            // - 'mode: no-cors' prevents browser errors on Vercel
             try {
-                await fetch(webhookUrl, {
+                fetch(webhookUrl, {
                     method: "POST",
-                    mode: "no-cors", // <--- IMPORTANT: Prevents "CORS" errors in browser console
+                    mode: "no-cors", 
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        phone: phone,
-                        source: "90 Day Challenge Checkout"
-                    })
+                    body: JSON.stringify(data),
+                    keepalive: true 
                 });
             } catch (error) {
                 console.error("Webhook error:", error);
-                // We proceed to Stripe even if Make fails
             }
 
-            // 3. Redirect to Stripe
-            // IMPORTANT: Make sure this link is your TEST MODE link if you are testing!
-            // I kept the link from your previous code:
+            // 4. Redirect to Stripe (with a small 500ms delay to ensure the fetch starts)
             var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
             
-            // Prefill email so they don't have to type it again in Stripe
-            if(email) {
-                window.location.href = stripeLink + "?prefilled_email=" + encodeURIComponent(email);
-            } else {
-                window.location.href = stripeLink;
-            }
+            setTimeout(function() {
+                if(email) {
+                    window.location.href = stripeLink + "?prefilled_email=" + encodeURIComponent(email);
+                } else {
+                    window.location.href = stripeLink;
+                }
+            }, 500);
         }
     </script>
 </body>
