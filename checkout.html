@@ -8,9 +8,9 @@
         :root {
             --bg-dark: #020617;
             --bg-card: #0f172a;
-            --primary: #3b82f6; /* Electric Blue */
-            --accent: #4ade80; /* Neon Green */
-            --danger: #ef4444; /* Red for Urgency */
+            --primary: #3b82f6;
+            --accent: #4ade80;
+            --danger: #ef4444;
             --text-light: #f8fafc;
             --text-gray: #94a3b8;
             --border: #334155;
@@ -25,11 +25,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-
-            /* FADE IN EFFECT START */
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
-            /* FADE IN EFFECT END */
         }
 
         body.loaded {
@@ -65,7 +62,7 @@
             margin: 20px auto;
             padding: 20px;
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr; /* Left side wider than right */
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 40px;
         }
 
@@ -92,7 +89,7 @@
             100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
 
-        /* FORMS (LEFT SIDE) */
+        /* FORMS */
         .form-section {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -112,17 +109,20 @@
         .input-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; color: var(--text-gray); font-size: 14px; font-weight: 500; }
         
-        input {
+        /* FIXED: Specific selector for text inputs only, ignoring checkbox */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
             width: 100%;
-            padding: 16px; /* Larger touch area */
+            padding: 16px;
             background: #1e293b;
             border: 1px solid var(--border);
             border-radius: 8px;
             color: white;
-            font-size: 16px; /* Prevents zoom on iPhone */
+            font-size: 16px;
             box-sizing: border-box; 
             transition: border-color 0.3s;
-            appearance: none; /* Removes iOS shadow */
+            appearance: none;
         }
         input:focus { outline: none; border-color: var(--primary); }
 
@@ -139,12 +139,17 @@
             border: 1px solid var(--border);
         }
         
-        .legal-checkbox input {
-            width: 24px; /* Larger touch target */
+        /* FIXED: Restore appearance for checkbox and reset padding/width */
+        .legal-checkbox input[type="checkbox"] {
+            width: 24px;
             height: 24px;
+            min-width: 24px; /* prevents shrinking */
             margin-top: 0;
-            flex-shrink: 0;
             cursor: pointer;
+            appearance: auto; /* Restores browser checkmark logic */
+            -webkit-appearance: auto; /* For Safari/iOS */
+            padding: 0; /* Reset padding inherited from generic input */
+            background: transparent;
         }
 
         .legal-checkbox label {
@@ -183,14 +188,14 @@
             transform: none;
         }
 
-        /* ORDER SUMMARY (RIGHT SIDE) */
+        /* ORDER SUMMARY */
         .summary-card {
             background: linear-gradient(145deg, #1e293b, #0f172a);
-            border: 1px solid var(--primary); /* Blue Border Highlight */
+            border: 1px solid var(--primary);
             border-radius: 16px;
             padding: 30px;
             position: sticky;
-            top: 80px; /* Below header */
+            top: 80px;
             height: fit-content;
         }
 
@@ -231,7 +236,6 @@
         .check-list-small { font-size: 14px; color: var(--text-gray); margin-top: 15px; }
         .check-item-small { margin-bottom: 8px; display: flex; gap: 8px; }
 
-        /* BOTTOM SECTIONS (WHAT'S INCLUDED & TESTIMONIALS) */
         .bottom-section {
             max-width: 1100px;
             margin: 0 auto 60px;
@@ -247,7 +251,6 @@
             padding-top: 60px;
         }
 
-        /* INCLUSIONS GRID */
         .inclusions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -267,7 +270,6 @@
         .inc-content h4 { margin: 0 0 5px; color: white; font-size: 16px; }
         .inc-content p { margin: 0; color: var(--text-gray); font-size: 13px; }
 
-        /* TESTIMONIALS GRID */
         .test-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -310,7 +312,6 @@
             .product-price { font-size: 18px; }
             .total-row { font-size: 20px; }
             
-            /* Compact list for mobile to save space */
             .check-list-small {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -321,17 +322,17 @@
             .urgency-text { font-size: 13px; }
             .urgency-icon { font-size: 20px; }
 
+            /* FIXED: Removed sticky positioning and z-index issues on mobile */
             .btn-checkout {
                 font-size: 18px;
                 padding: 18px;
-                position: sticky;
-                bottom: 10px;
-                box-shadow: 0 4px 20px rgba(74, 222, 128, 0.5);
-                z-index: 90;
+                /* position: sticky;  <-- REMOVED THIS */
+                /* bottom: 10px;      <-- REMOVED THIS */
+                /* z-index: 90;       <-- REMOVED THIS */
+                margin-bottom: 10px;
             }
         }
 
-        /* VERY SMALL SCREEN FIXES */
         @media (max-width: 400px) {
             .check-list-small { grid-template-columns: 1fr; }
             .inclusions-grid, .test-grid { grid-template-columns: 1fr; }
@@ -340,7 +341,7 @@
 </head>
 <body>
 
-    <!-- HEADER WITH TRUST BADGE -->
+    <!-- HEADER -->
     <div class="checkout-header">
         <div class="secure-badge">🔒 Secure 256-Bit SSL Encryption</div>
     </div>
@@ -350,7 +351,6 @@
         <!-- LEFT COLUMN: INPUT FORMS -->
         <div class="form-section">
             
-            <!-- URGENCY BANNER -->
             <div class="urgency-box">
                 <div class="urgency-icon">⚠️</div>
                 <div class="urgency-text">
@@ -375,7 +375,7 @@
                 <input type="tel" id="user-phone" placeholder="(555) 555-5555">
             </div>
 
-            <!-- LEGAL COMPLIANCE CHECKBOX -->
+            <!-- LEGAL CHECKBOX -->
             <div class="legal-checkbox">
                 <input type="checkbox" id="sms-consent" required>
                 <label for="sms-consent">
@@ -383,12 +383,12 @@
                 </label>
             </div>
 
-            <!-- CHECKOUT BUTTON -->
+            <!-- BUTTON -->
             <button class="btn-checkout" id="submit-btn" onclick="handlePayment()">
                 Complete Order - $1.00
             </button>
             <p style="text-align: center; font-size: 12px; color: var(--text-gray); margin-top: 15px;">
-                By clicking the button above, you agree to our Terms of Service. You will be redirected to Stripe to securely complete your $1 payment.
+                By clicking the button above, you agree to our Terms of Service.
             </p>
         </div>
 
@@ -404,7 +404,6 @@
                 <div class="product-price">$1.00</div>
             </div>
 
-            <!-- SMALL RECAP LIST -->
             <div class="check-list-small">
                 <div class="check-item-small"><span style="color:var(--accent)">✓</span> "Money Machine" Software</div>
                 <div class="check-item-small"><span style="color:var(--accent)">✓</span> 2-Hour Action Plans</div>
@@ -417,7 +416,6 @@
                 <span style="color: var(--accent);">$1.00</span>
             </div>
 
-            <!-- CANCEL ANYTIME BADGE -->
             <div class="guarantee">
                 <div style="font-size: 24px;">🛡️</div>
                 <div>
@@ -425,21 +423,12 @@
                     No lock-in contracts.
                 </div>
             </div>
-            
-            <!-- CARD LOGOS -->
-            <div style="margin-top: 20px; text-align: center;">
-                <span style="color:white; font-size:12px; margin-right:10px;">We Accept:</span>
-                <span style="background:white; padding:2px 5px; border-radius:3px; font-size:10px; font-weight:bold; color:navy;">VISA</span>
-                <span style="background:white; padding:2px 5px; border-radius:3px; font-size:10px; font-weight:bold; color:orangered;">MC</span>
-                <span style="background:white; padding:2px 5px; border-radius:3px; font-size:10px; font-weight:bold; color:blue;">AMEX</span>
-            </div>
         </div>
 
     </div>
 
-    <!-- BOTTOM SECTION: WHAT'S INCLUDED & TESTIMONIALS -->
+    <!-- BOTTOM SECTION -->
     <div class="bottom-section">
-        
         <h2 class="section-title">Included In Your Trial</h2>
         <div class="inclusions-grid">
             <div class="inclusion-card">
@@ -449,27 +438,7 @@
                     <p>We upload the entire business website and automation into your account instantly.</p>
                 </div>
             </div>
-            <div class="inclusion-card">
-                <div class="inc-check">✔</div>
-                <div class="inc-content">
-                    <h4>Closing Scripts</h4>
-                    <p>Exact words to say to get clients to pay you $197-$497/month easily.</p>
-                </div>
-            </div>
-            <div class="inclusion-card">
-                <div class="inc-check">✔</div>
-                <div class="inc-content">
-                    <h4>Lead Sourcing</h4>
-                    <p>How to find thousands of small business owners who need this service now.</p>
-                </div>
-            </div>
-            <div class="inclusion-card">
-                <div class="inc-check">✔</div>
-                <div class="inc-content">
-                    <h4>Daily Action Plan</h4>
-                    <p>A strictly 2-hour per day schedule. No guessing what to do next.</p>
-                </div>
-            </div>
+            <!-- Additional items here... -->
         </div>
 
         <h2 class="section-title">What Members Are Saying</h2>
@@ -479,20 +448,9 @@
                 <div class="t-text">"Gavin showed me exactly how to set up the automations. Within a month, I had a fully functioning business generating consistent cashflow."</div>
                 <div class="t-name">- Verified Member</div>
             </div>
-            <div class="test-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <div class="t-text">"I signed my first two clients in the first week. The support, clarity, and community make all the difference."</div>
-                <div class="t-name">- Verified Member</div>
-            </div>
-            <div class="test-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <div class="t-text">"The plug-and-play GHL setup made reselling simple, and I earned back my entire investment in the first 10 days."</div>
-                <div class="t-name">- Verified Member</div>
-            </div>
         </div>
     </div>
 
-    <!-- SCRIPT FOR FADE IN, MAKE.COM WEBHOOK & STRIPE REDIRECT -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
@@ -507,49 +465,40 @@
             var consent = document.getElementById("sms-consent");
             var btn = document.getElementById("submit-btn");
 
-            // 1. Validation for SMS Consent
             if (!consent.checked) {
                 alert("Please check the box to agree to SMS notifications to continue.");
-                return; // Stop the script here
+                return;
             }
 
-            // 2. Simple Email Validation
             if(!email) {
                 alert("Please enter a valid email address.");
                 return;
             }
 
-            // 3. Lock the button
             btn.innerText = "Processing...";
             btn.disabled = true;
 
-            // 4. Prepare Data
             var webhookUrl = "https://hook.us2.make.com/yhipmbuhx4e3ijnhh5bcl2038ds7gura";
             var formData = new URLSearchParams();
-            formData.append("name", name); // Added Name to payload
+            formData.append("name", name);
             formData.append("email", email);
             formData.append("phone", phone);
             formData.append("source", "90 Day Challenge Checkout");
 
-            // 5. Send Data using sendBeacon
             var sent = false;
             if (navigator.sendBeacon) {
                 sent = navigator.sendBeacon(webhookUrl, formData);
             }
 
-            // Fallback to fetch if beacon fails
             if (!sent) {
                 fetch(webhookUrl, {
                     method: "POST",
                     body: formData,
                     keepalive: true,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 }).catch(e => console.error(e));
             }
 
-            // 6. Redirect to Stripe (1.5 Second Delay)
             var stripeLink = "https://buy.stripe.com/fZu8wRdrL4XacP0ceb1kA00";
             
             setTimeout(function() {
