@@ -22,16 +22,16 @@
             --bg-dark: #020617; /* Deepest Navy/Black */
             --bg-card: #0f172a;
             --primary: #3b82f6; /* Electric Blue */
-            
-            /* --- UPDATED COLOR SCHEME --- */
-            --accent: #FFD700;  /* Main Accent is now Gold */
+            --accent: #FFD700;  /* Gold */
             --accent-glow: rgba(255, 215, 0, 0.2);
-            /* ---------------------------- */
-            
-            --purple-glow: #9333ea; /* Neon Purple */
+            --purple-glow: #9333ea;
             --text-light: #f8fafc;
             --text-gray: #94a3b8;
             --glass: rgba(30, 41, 59, 0.7);
+            
+            /* Status Colors */
+            --danger: #ef4444; /* Red */
+            --warn: #f97316;   /* Orange */
         }
 
         /* GLOBAL RESET */
@@ -43,7 +43,7 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
-            padding-top: 60px; /* Space for the Fixed Top Bar */
+            padding-top: 60px;
             opacity: 0; 
             transition: opacity 1.5s ease-in-out; 
         }
@@ -85,7 +85,6 @@
             font-weight: 600;
         }
 
-        /* Left Bubble: Members */
         .member-count {
             display: flex;
             align-items: center;
@@ -98,17 +97,15 @@
             font-size: 13px;
         }
         
-        /* UPDATED: Yellow Dot */
         .live-dot {
             width: 8px;
             height: 8px;
-            background-color: var(--accent); /* Yellow */
+            background-color: var(--accent);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent);
             animation: pulse 2s infinite;
         }
 
-        /* Right Side: Cart + Timer */
         .right-actions {
             display: flex;
             align-items: center;
@@ -118,7 +115,7 @@
         .cart-btn-top {
             text-decoration: none;
             color: #000;
-            background: var(--accent); /* Yellow Button */
+            background: var(--accent);
             padding: 6px 16px;
             border-radius: 4px;
             font-weight: 800;
@@ -131,7 +128,7 @@
         .cart-btn-top:hover { transform: scale(1.05); }
         
         .timer-box {
-            color: #ff4d4d; /* Red Text */
+            color: #ff4d4d;
             font-family: monospace;
             font-size: 16px;
             font-weight: 700;
@@ -153,23 +150,19 @@
             padding: 40px 20px 60px;
             position: relative;
             background-color: #05010d; 
-            /* Grid Background */
             background-image: 
                 linear-gradient(rgba(147, 51, 234, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(147, 51, 234, 0.1) 1px, transparent 1px),
-                /* Purple Glow Top */
                 radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.25) 0%, transparent 60%),
-                /* UPDATED: Yellow Glow Accents (was green) */
                 radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 40%);
             background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%;
             border-bottom: 1px solid rgba(147, 51, 234, 0.2);
         }
 
-        /* --- GREY & YELLOW BADGE STYLE --- */
         .grey-yellow-style {
             background: #334155; 
-            color: var(--accent); /* Yellow */
+            color: var(--accent);
             border: 1px solid rgba(255, 215, 0, 0.4);
             padding: 8px 18px;
             border-radius: 50px;
@@ -183,12 +176,8 @@
             box-shadow: 0 0 15px var(--accent-glow); 
         }
 
-        .badge {
-            margin-bottom: 20px;
-        }
+        .badge { margin-bottom: 20px; }
 
-        /* HEADLINES */
-        /* UPDATED: Yellow to Purple Gradient */
         .gradient-text {
             background: linear-gradient(to right, #FFD700, #c084fc);
             -webkit-background-clip: text;
@@ -197,11 +186,13 @@
             font-weight: 800;
         }
 
+        /* BIG HEADLINE */
         h1 {
-            font-size: 52px;
+            font-size: 68px; 
             margin: 10px 0 20px;
             line-height: 1.1;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            font-weight: 900;
         }
 
         .sub-headline {
@@ -211,53 +202,29 @@
             margin: 0 auto 30px;
         }
 
-        /* VIDEO WRAPPER */
         .video-wrapper {
             background: #000;
             border: 1px solid #334155;
             border-radius: 20px;
+            aspect-ratio: 16 / 9;
             max-width: 850px;
             margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             box-shadow: 0 0 40px rgba(147, 51, 234, 0.2); 
             position: relative;
             overflow: hidden;
-            padding-bottom: 56.25%;
-            height: 0;
         }
         
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
 
-        /* STATS BAR */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin: 40px 0;
-        }
+        .stats-bar { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 40px 0; }
+        .stat-pill { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); padding: 10px 25px; border-radius: 12px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
 
-        .stat-pill {
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 10px 25px;
-            border-radius: 12px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* UPDATED: YELLOW BUTTONS */
         .btn-main {
-            background: linear-gradient(90deg, #FFD700, #ffb300); /* Gold Gradient */
-            color: #000; /* Black Text for contrast on yellow */
+            background: linear-gradient(90deg, #FFD700, #ffb300);
+            color: #000;
             font-size: 20px;
             font-weight: 800;
             padding: 22px 40px;
@@ -272,58 +239,91 @@
             max-width: 500px;
             text-align: center;
         }
+        .btn-main:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
 
-        .btn-main:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-        }
+        .trust-bubbles { display: flex; justify-content: center; gap: 12px; margin-top: 25px; flex-wrap: wrap; }
+        .trust-bubbles svg { width: 16px; height: 16px; fill: var(--accent); }
 
-        /* TRUST BUBBLES */
-        .trust-bubbles {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 25px;
-            flex-wrap: wrap; 
-        }
-
-        .trust-bubbles svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--accent); /* Yellow Checkmark */
-        }
-
-        /* REST OF CONTENT STYLES */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            margin: 50px auto;
-            max-width: 800px;
-            text-align: left;
-        }
+        .glass-card { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 20px; margin: 50px auto; max-width: 800px; text-align: left; }
         .quote-icon { font-size: 40px; color: var(--primary); margin-bottom: -20px; opacity: 0.5; }
         
-        .math-section {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            border: 1px solid #334155;
-            padding: 40px;
-            border-radius: 20px;
-            margin: 60px auto;
-            text-align: center;
+        .math-section { background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid #334155; padding: 40px; border-radius: 20px; margin: 60px auto; text-align: center; }
+        .big-math { font-size: 32px; font-weight: 800; color: #fff; margin: 20px 0; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px dashed var(--accent); display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+        /* --- NEW STYLES FOR THE "STUCK" SECTION WRAPPER --- */
+        .stuck-section-wrapper {
+            width: 100%;
+            margin-top: 80px;
+            padding: 80px 0;
+            
+            /* Darker background to separate from blue sections */
+            background-color: #03050a; 
+            
+            /* Subtle Red/Danger Glow at the top */
+            background-image: radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.08) 0%, transparent 60%);
+            
+            /* Borders to cut the section off cleanly */
+            border-top: 1px solid #1e293b;
+            border-bottom: 1px solid #1e293b;
         }
-        .big-math {
-            font-size: 32px;
-            font-weight: 800;
-            color: #fff;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            border: 1px dashed var(--accent); /* Yellow Border */
-            display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;
+
+        .big-headline {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            align-items: stretch;
+        }
+
+        .compare-card {
+            background: #111827;
+            border: 1px solid #374151;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .compare-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; }
+        .compare-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; }
+        
+        .compare-list { list-style: none; padding: 0; text-align: left; font-size: 14px; color: #cbd5e1; }
+        .compare-list li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
+        .compare-list svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; }
+
+        /* 1. FADED / RED */
+        .card-stuck { opacity: 0.5; border-color: #451a1a; }
+        .card-stuck:hover { opacity: 1; border-color: var(--danger); box-shadow: 0 0 30px rgba(239, 68, 68, 0.3); transform: translateY(-5px); }
+        .icon-red { fill: var(--danger); }
+
+        /* 2. LESS FADED / ORANGE */
+        .card-hustle { opacity: 0.75; border-color: #452c1a; }
+        .card-hustle:hover { opacity: 1; border-color: var(--warn); box-shadow: 0 0 30px rgba(249, 115, 22, 0.3); transform: translateY(-5px); }
+        .icon-orange { fill: var(--warn); }
+
+        /* 3. HIGHLIGHTED / GOLD */
+        .card-freedom {
+            opacity: 1;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            z-index: 2;
+            transform: scale(1.02);
+        }
+        .card-freedom:hover { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
+        .icon-gold { fill: var(--accent); }
+
+        .freedom-footer {
+            margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px;
         }
 
         .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
@@ -342,7 +342,7 @@
 
         /* MOBILE ADJUSTMENTS */
         @media (max-width: 768px) {
-            h1 { font-size: 34px; margin-top: 5px; }
+            h1 { font-size: 42px; margin-top: 5px; }
             .container { padding: 15px; }
             .hero { padding: 40px 15px 40px; }
             .stats-bar { flex-direction: column; width: 100%; gap: 10px; }
@@ -350,11 +350,12 @@
             .check-list { grid-template-columns: 1fr; }
             .big-math { font-size: 22px; flex-direction: column; gap: 5px; padding: 25px 15px; }
             .btn-main { width: 100%; padding: 20px; font-size: 18px; }
-            
-            /* Top Bar Mobile */
             .member-count { font-size: 11px; padding: 4px 8px; }
             .cart-btn-top { font-size: 11px; padding: 5px 10px; }
             .timer-box { font-size: 13px; }
+            .comparison-grid { gap: 15px; }
+            .card-freedom { transform: scale(1); }
+            .big-headline { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -363,13 +364,10 @@
     <!-- TOP URGENCY BAR -->
     <div class="top-bar">
         <div class="bar-content">
-            <!-- Left: Members Count -->
             <div class="member-count">
                 <div class="live-dot"></div>
                 <span>1,400+ Members Joined</span>
             </div>
-
-            <!-- Right: Cart & Timer -->
             <div class="right-actions">
                 <a href="checkout.html" class="cart-btn-top">
                     🛒 <span style="display:inline-block;">Checkout</span>
@@ -382,7 +380,6 @@
     <!-- HERO SECTION -->
     <div class="hero">
         <div class="container">
-            <!-- ZERO FLUFF BADGE (Grey & Yellow) -->
             <div class="badge grey-yellow-style">🔥 Zero Fluff • Zero BS • Results Only</div>
            
             <h1>Create A Cashflow Asset <br>In Just <span class="gradient-text">2 Hours A Day</span></h1>
@@ -392,56 +389,34 @@
                 <strong style="color:white;">Anyone can do this.</strong> Start your 14-day trial for $1.
             </p>
 
-            <!-- STATS BAR -->
             <div class="stats-bar">
                 <div class="stat-pill">⏱️ Work 2 Hours / Day</div>
                 <div class="stat-pill">📱 Work From Anywhere</div>
                 <div class="stat-pill">⚡ First Result in 14 Days</div>
             </div>
            
-            <!-- VIDEO EMBED -->
             <div class="video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/K8BPPh4wRH0?start=9" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen>
-                </iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/K8BPPh4wRH0?start=9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
 
-            <!-- CTA -->
             <a href="checkout.html" class="btn-main">Start 14-Day Trial for $1</a>
             
-            <!-- TRUST BUBBLES (MATCHING GREY & YELLOW STYLE) -->
             <div class="trust-bubbles">
-                <div class="grey-yellow-style">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    Instant Access
-                </div>
-                <div class="grey-yellow-style">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    Cancel Anytime
-                </div>
-                <div class="grey-yellow-style">
-                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                    100% Satisfaction Guaranteed
-                </div>
+                <div class="grey-yellow-style"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Instant Access</div>
+                <div class="grey-yellow-style"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Cancel Anytime</div>
+                <div class="grey-yellow-style"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> 100% Satisfaction Guaranteed</div>
             </div>
             
-            <p style="font-size: 12px; color: var(--text-gray); margin-top: 15px;">
-                Then $197/mo. Secure Checkout.
-            </p>
+            <p style="font-size: 12px; color: var(--text-gray); margin-top: 15px;">Then $197/mo. Secure Checkout.</p>
         </div>
     </div>
 
-    <!-- GLASS CARD QUOTE -->
+    <!-- QUOTE SECTION -->
     <div class="container">
         <div class="glass-card">
-            <div class="quote-icon">"</div>
+            <div class="quote-icon">“</div>
             <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
-                <strong style="color:white;">The first 2 weeks are FREE.</strong> We'll be there the whole way to make sure you're set up. It's super easy—the first week is just setting up the software. Once you got it all set up, really it only takes 2 days.
+                <strong style="color:white;">The first 2 weeks are FREE.</strong> We’ll be there the whole way to make sure you're set up. It’s super easy—the first week is just setting up the software. Once you got it all set up, really it only takes 2 days.
             </p>
             <p style="font-size: 18px; line-height: 1.6;">
                 My first 5 days after setting everything up I was already making <span style="color:var(--accent); font-weight:bold;">2K/mo</span> after selling to 5 people a day. It really works for itself.
@@ -493,6 +468,100 @@
         </div>
     </div>
 
+    <!-- NEW FULL-WIDTH SECTION: WHY PEOPLE STAY STUCK -->
+    <!-- This wrapper provides the background color shift -->
+    <div class="stuck-section-wrapper">
+        <div class="container" style="text-align:center;">
+            
+            <div class="big-headline">
+                Why most people stay <span style="color:var(--danger)">stuck</span>
+            </div>
+            
+            <p class="sub-headline">The vehicle you choose determines how fast you get to freedom. Choose wisely.</p>
+
+            <div class="comparison-grid">
+                
+                <!-- 1. FADED CARD (RED) -->
+                <div class="compare-card card-stuck">
+                    <div class="compare-icon">💼</div>
+                    <div class="compare-title" style="color:#aaa;">The 9-5 Grind</div>
+                    <ul class="compare-list">
+                        <li>
+                            <svg class="icon-red" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                            Trade time for money
+                        </li>
+                        <li>
+                            <svg class="icon-red" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                            Income is capped
+                        </li>
+                        <li>
+                            <svg class="icon-red" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                            Zero freedom/control
+                        </li>
+                        <li>
+                            <svg class="icon-red" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                            Build someone else's dream
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 2. LESS FADED CARD (ORANGE) -->
+                <div class="compare-card card-hustle">
+                    <div class="compare-icon">💲</div>
+                    <div class="compare-title" style="color:#ddd;">One-Time Sale</div>
+                    <ul class="compare-list">
+                        <li>
+                            <svg class="icon-orange" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            Start from zero every month
+                        </li>
+                        <li>
+                            <svg class="icon-orange" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            Constant hustle required
+                        </li>
+                        <li>
+                            <svg class="icon-orange" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            High stress / Burnout
+                        </li>
+                        <li>
+                            <svg class="icon-orange" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            Unpredictable income
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 3. HIGHLIGHTED CARD (GOLD) -->
+                <div class="compare-card card-freedom">
+                    <div class="compare-icon">🔁</div>
+                    <div class="compare-title" style="color:var(--accent);">Recurring Income</div>
+                    <ul class="compare-list">
+                        <li>
+                            <svg class="icon-gold" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            Work once, get paid forever
+                        </li>
+                        <li>
+                            <svg class="icon-gold" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            Compounding monthly growth
+                        </li>
+                        <li>
+                            <svg class="icon-gold" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            True time & location freedom
+                        </li>
+                        <li>
+                            <svg class="icon-gold" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            Predictable, stackable cashflow
+                        </li>
+                    </ul>
+                    <div class="freedom-footer">
+                        <svg style="width:20px; height:20px; fill:var(--accent);" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                        The Only Way To Freedom
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- END FULL-WIDTH SECTION -->
+
     <!-- TESTIMONIALS -->
     <div class="container">
         <div class="testimonials-wrapper">
@@ -529,37 +598,30 @@
 
     <!-- SCRIPTS -->
     <script>
-        // 1. FADE IN EFFECT
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 document.body.classList.add("loaded");
             }, 100);
         });
 
-        // 2. COUNTDOWN TIMER (10 MINUTES)
         function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
             setInterval(function () {
                 minutes = parseInt(timer / 60, 10);
                 seconds = parseInt(timer % 60, 10);
-
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
-
                 display.textContent = minutes + ":" + seconds;
-
-                if (--timer < 0) {
-                    timer = duration; // Reset or stop? Currently resets
-                }
+                if (--timer < 0) { timer = duration; }
             }, 1000);
         }
 
         window.onload = function () {
-            var tenMinutes = 60 * 10,
-                display = document.querySelector('#countdown');
+            var tenMinutes = 60 * 10, display = document.querySelector('#countdown');
             startTimer(tenMinutes, display);
         };
     </script>
 
 </body>
 </html>
+
