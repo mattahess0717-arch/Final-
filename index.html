@@ -269,6 +269,27 @@
         .math-section { background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid #334155; padding: 40px; border-radius: 20px; margin: 60px auto; text-align: center; }
         .big-math { font-size: 32px; font-weight: 800; color: #fff; margin: 20px 0; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px dashed var(--accent); display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
 
+        /* --- NEW TIMELINE CSS --- */
+        .timeline-wrapper { position: relative; padding-left: 30px; max-width: 800px; margin: 0 auto; }
+        .timeline-wrapper::before { content: ''; position: absolute; top: 0; bottom: 0; left: 19px; width: 2px; background: #334155; }
+        .timeline-step { position: relative; margin-bottom: 50px; }
+        .timeline-step:last-child { margin-bottom: 0; }
+        .t-marker { position: absolute; left: -30px; width: 40px; height: 40px; border-radius: 50%; background: #0f172a; border: 2px solid; display: flex; align-items: center; justify-content: center; font-size: 18px; z-index: 2; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        .t-content { background: var(--bg-card); border: 1px solid #334155; border-radius: 12px; padding: 25px; margin-left: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+        .t-content:hover { transform: translateX(5px); }
+        .t-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 5px; display: block; }
+        .t-day { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; opacity: 0.8; margin-bottom: 15px; display: block; }
+        .t-list { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .t-list li { margin-bottom: 8px; color: #cbd5e1; font-size: 0.95rem; display: flex; align-items: flex-start; }
+        .t-list li::before { content: '•'; margin-right: 10px; font-weight: bold; }
+        .t-goal { background: rgba(255, 255, 255, 0.05); padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; display: inline-block; width: 100%; border-left: 3px solid; }
+        .step-blue .t-marker { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); } .step-blue .t-title, .step-blue .t-day { color: #3b82f6; } .step-blue .t-goal { border-left-color: #3b82f6; color: #93c5fd; }
+        .step-green .t-marker { border-color: #22c55e; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); } .step-green .t-title, .step-green .t-day { color: #22c55e; } .step-green .t-goal { border-left-color: #22c55e; color: #86efac; }
+        .step-yellow .t-marker { border-color: #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); } .step-yellow .t-title, .step-yellow .t-day { color: #eab308; } .step-yellow .t-goal { border-left-color: #eab308; color: #fde047; }
+        .step-orange .t-marker { border-color: #f97316; box-shadow: 0 0 15px rgba(249, 115, 22, 0.4); } .step-orange .t-title, .step-orange .t-day { color: #f97316; } .step-orange .t-goal { border-left-color: #f97316; color: #fdba74; }
+        .step-purple .t-marker { border-color: #a855f7; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); } .step-purple .t-title, .step-purple .t-day { color: #a855f7; } .step-purple .t-goal { border-left-color: #a855f7; color: #d8b4fe; }
+        @media(max-width: 600px) { .timeline-wrapper { padding-left: 0; } .timeline-wrapper::before { left: 20px; } .t-marker { left: 0; } .t-content { margin-left: 55px; padding: 15px; } }
+
         /* --- STUCK SECTION --- */
         .stuck-section-wrapper {
             width: 100%;
@@ -287,7 +308,7 @@
             width: 100%;
             background: linear-gradient(180deg, #1a0505 0%, #0f172a 40%, #020617 100%);
             padding-top: 40px;
-            padding-bottom: 0; /* Removing bottom padding to connect to footer */
+            padding-bottom: 0; 
         }
 
         .big-headline {
@@ -334,7 +355,9 @@
         .card-freedom:hover { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
         .icon-gold { fill: var(--accent); }
 
-        /* --- STORIES BUBBLES --- */
+        .freedom-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
+
+        /* --- UPDATED STORY BOX STYLES --- */
         .stories-title {
             margin-top: 80px;
             margin-bottom: 40px;
@@ -353,11 +376,14 @@
         }
 
         .story-bubble {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
+            /* RECTANGLE BOX SHAPE */
+            width: 160px;
+            height: 280px; /* 9:16 Aspect Ratio */
+            border-radius: 15px;
             background-color: #334155;
-            background-image: linear-gradient(45deg, #1e293b, #0f172a);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border: 2px solid rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
@@ -367,26 +393,42 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .story-bubble:hover {
             border-color: var(--accent);
             box-shadow: 0 0 25px var(--accent-glow);
-            transform: scale(1.1);
+            transform: scale(1.05); /* Slight scale up */
         }
 
+        /* Dark overlay for better play icon visibility */
+        .story-bubble::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.3); /* Darkens the image slightly */
+            z-index: 1;
+            transition: 0.3s;
+        }
+        .story-bubble:hover::after { background: rgba(0,0,0,0.1); }
+
         .play-icon-small {
-            width: 30px;
-            height: 30px;
+            width: 50px;
+            height: 50px;
             fill: white;
             z-index: 2;
-            opacity: 0.8;
+            background: rgba(0, 0, 0, 0.5); /* Circle backing */
+            border-radius: 50%;
+            padding: 12px;
+            backdrop-filter: blur(4px);
             transition: 0.3s;
         }
         
         .story-bubble:hover .play-icon-small {
             fill: var(--accent);
-            opacity: 1;
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
         }
 
         .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
@@ -432,8 +474,10 @@
             .card-freedom { transform: scale(1); }
             .big-headline { font-size: 2.2rem; }
             .stories-grid { gap: 15px; }
-            .story-bubble { width: 90px; height: 90px; }
             .stories-title { font-size: 2rem; }
+            
+            /* Mobile adjustment for boxes to fit nicely */
+            .story-bubble { width: 140px; height: 240px; } 
         }
     </style>
 </head>
@@ -560,6 +604,96 @@
             </div>
         </div>
 
+        <!-- NEW ROADMAP TIMELINE SECTION -->
+        <div class="container" style="padding-top: 60px; padding-bottom: 60px;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">Your Path To <span class="gradient-text">Success</span></h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 50px;">The exact roadmap we follow to hit $10k/mo in 90 days.</p>
+
+            <div class="timeline-wrapper">
+                
+                <!-- STEP 1 (BLUE) -->
+                <div class="timeline-step step-blue">
+                    <div class="t-marker">1</div>
+                    <div class="t-content">
+                        <span class="t-day">Day 1</span>
+                        <span class="t-title">Onboarding & Setup</span>
+                        <ul class="t-list">
+                            <li>Welcome call</li>
+                            <li>Login to software + course</li>
+                            <li>Install core tools + integrations</li>
+                            <li>Success plan customized for YOU</li>
+                        </ul>
+                        <div class="t-goal">📌 Goal: You know exactly what to do each day</div>
+                    </div>
+                </div>
+
+                <!-- STEP 2 (GREEN) -->
+                <div class="timeline-step step-green">
+                    <div class="t-marker">2</div>
+                    <div class="t-content">
+                        <span class="t-day">Day 1–3</span>
+                        <span class="t-title">Learn & Implement</span>
+                        <ul class="t-list">
+                            <li>Watch the core course modules</li>
+                            <li>Set up DM scripts + pipeline</li>
+                            <li>Practice conversation flow</li>
+                            <li>Start booking early interest</li>
+                        </ul>
+                        <div class="t-goal">📌 Goal: Break the ice & start conversations</div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 (YELLOW) -->
+                <div class="timeline-step step-yellow">
+                    <div class="t-marker">3</div>
+                    <div class="t-content">
+                        <span class="t-day">Day 2–3</span>
+                        <span class="t-title">Launch Your Funnel</span>
+                        <ul class="t-list">
+                            <li>Website/funnel goes live</li>
+                            <li>Automations ready</li>
+                            <li>Offer messaging dialed in</li>
+                            <li>Tracking & analytics connected</li>
+                        </ul>
+                        <div class="t-goal">📌 Goal: You’re officially open for business</div>
+                    </div>
+                </div>
+
+                <!-- STEP 4 (ORANGE) -->
+                <div class="timeline-step step-orange">
+                    <div class="t-marker">4</div>
+                    <div class="t-content">
+                        <span class="t-day">Day 3</span>
+                        <span class="t-title">First Sale</span>
+                        <ul class="t-list">
+                            <li>Outbound messaging goes live</li>
+                            <li>Calls booked</li>
+                            <li>First commission hit 💰🔥</li>
+                        </ul>
+                        <div class="t-goal">📌 Goal: Break the ice → win #1</div>
+                    </div>
+                </div>
+
+                <!-- STEP 5 (PURPLE) -->
+                <div class="timeline-step step-purple">
+                    <div class="t-marker">5</div>
+                    <div class="t-content">
+                        <span class="t-day">Weeks 1–2</span>
+                        <span class="t-title">Show Off Your Wins 🚀</span>
+                        <ul class="t-list">
+                            <li>Post wins in community</li>
+                            <li>Scale message volume</li>
+                            <li>Rank up commissions</li>
+                            <li>Build recurring revenue</li>
+                            <li>Rinse & repeat for bigger weeks</li>
+                        </ul>
+                        <div class="t-goal">📌 Goal: Momentum = Money → Become a top closer</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
     <!-- STUCK SECTION -->
@@ -626,32 +760,33 @@
                 <!-- ============================================================== -->
 
                 <!-- Video 1 -->
-                <a href="https://www.youtube.com/embed/q7AR9zd035k" target="_blank" class="story-bubble">
+                <!-- REPLACE 'https://placehold.co/...' with your own image link -->
+                <a href="https://www.youtube.com/embed/q7AR9zd035k" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+1');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 2 -->
-                <a href="https://www.youtube.com/embed/_2pGMlmOdPs" target="_blank" class="story-bubble">
+                <a href="https://www.youtube.com/embed/_2pGMlmOdPs" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+2');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 3 -->
-                <a href="https://www.youtube.com/embed/fwE0AVAkzTA" target="_blank" class="story-bubble">
+                <a href="https://www.youtube.com/embed/fwE0AVAkzTA" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+3');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 4 -->
-                <a href="https://www.youtube.com/embed/NOKXcQXdie0" target="_blank" class="story-bubble">
+                <a href="https://www.youtube.com/embed/NOKXcQXdie0" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+4');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 5 -->
-                <a href="https://www.youtube.com/embed/uS7NdDC1Ijk" target="_blank" class="story-bubble">
+                <a href="https://www.youtube.com/embed/uS7NdDC1Ijk" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+5');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 6 -->
-                <a href="https://www.youtube.com/embed/Ak6tB1hujFU" target="_blank" class="story-bubble">
+                <a href="https://www.youtube.com/embed/Ak6tB1hujFU" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+6');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
 
@@ -692,17 +827,20 @@
                 <div class="check-item">✅ Accountability Coaching</div>
             </div>
             <a href="checkout.html" class="btn-main">YES! Start My $1 Trial Now &raquo;</a>
+            <div class="founder-signoff">
+                <p>&copy; 2024 90 Day Cashflow Challenge. All Rights Reserved.</p>
+            </div>
         </div>
+
     </div>
     <!-- END FINAL FLOW WRAPPER -->
 
-    <!-- FOOTER SECTION (PRIVACY / TERMS) -->
+    <!-- FOOTER SECTION (PRIVACY / REFUND / SUPPORT) -->
     <div class="footer-section">
         <div class="container">
             <div class="footer-links">
-                <!-- Replace # with real links -->
                 <a href="privacy.html" target="_blank">Privacy Policy</a>
-                <!-- Terms of Service Removed -->
+                <a href="refund-policy.html" target="_blank">Refund Policy</a>
                 <a href="mailto:info@cashflowchallenge.ai">Support</a>
             </div>
             <p>&copy; 2024 90 Day Cashflow Challenge. All Rights Reserved.</p>
