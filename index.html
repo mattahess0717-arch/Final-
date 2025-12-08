@@ -287,7 +287,7 @@
             width: 100%;
             background: linear-gradient(180deg, #1a0505 0%, #0f172a 40%, #020617 100%);
             padding-top: 40px;
-            padding-bottom: 60px;
+            padding-bottom: 0; /* Removing bottom padding to connect to footer */
         }
 
         .big-headline {
@@ -334,8 +334,6 @@
         .card-freedom:hover { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
         .icon-gold { fill: var(--accent); }
 
-        .freedom-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
-
         /* --- STORIES BUBBLES --- */
         .stories-title {
             margin-top: 80px;
@@ -365,7 +363,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            text-decoration: none; /* Removed underline */
+            text-decoration: none; 
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -403,7 +401,19 @@
         .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left; margin: 30px 0; }
         .check-item { background: rgba(255,255,255,0.03); padding: 12px 20px; border-radius: 8px; font-size: 14px; color: #e2e8f0; }
 
-        .founder-signoff { margin-top: 60px; padding-top: 30px; border-top: 1px solid #334155; color: var(--text-gray); font-size: 14px; text-align: center; }
+        /* --- NEW FOOTER STYLES --- */
+        .footer-section {
+            background-color: #000;
+            border-top: 1px solid #1e293b;
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+        .footer-links { margin-bottom: 25px; }
+        .footer-links a { color: var(--text-gray); text-decoration: none; margin: 0 12px; transition: 0.3s; font-weight: 600; }
+        .footer-links a:hover { color: var(--accent); }
+        .disclaimer-text { font-size: 11px; color: #475569; max-width: 800px; margin: 20px auto 0; line-height: 1.5; }
 
         /* MOBILE ADJUSTMENTS */
         @media (max-width: 768px) {
@@ -616,32 +626,32 @@
                 <!-- ============================================================== -->
 
                 <!-- Video 1 -->
-                <a href="https://www.youtube.com/embed/Ak6tB1hujFU" target="_blank" class="story-bubble">
-                    <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </a>
-                
-                <!-- Video 2 -->
                 <a href="https://www.youtube.com/embed/q7AR9zd035k" target="_blank" class="story-bubble">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
-                <!-- Video 3 -->
+                <!-- Video 2 -->
                 <a href="https://www.youtube.com/embed/_2pGMlmOdPs" target="_blank" class="story-bubble">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
-                <!-- Video 4 -->
+                <!-- Video 3 -->
                 <a href="https://www.youtube.com/embed/fwE0AVAkzTA" target="_blank" class="story-bubble">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
-                <!-- Video 5 -->
+                <!-- Video 4 -->
                 <a href="https://www.youtube.com/embed/NOKXcQXdie0" target="_blank" class="story-bubble">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
-                <!-- Video 6 -->
+                <!-- Video 5 -->
                 <a href="https://www.youtube.com/embed/uS7NdDC1Ijk" target="_blank" class="story-bubble">
+                    <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </a>
+                
+                <!-- Video 6 -->
+                <a href="https://www.youtube.com/embed/Ak6tB1hujFU" target="_blank" class="story-bubble">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
 
@@ -682,13 +692,25 @@
                 <div class="check-item">✅ Accountability Coaching</div>
             </div>
             <a href="checkout.html" class="btn-main">YES! Start My $1 Trial Now &raquo;</a>
-            <div class="founder-signoff">
-                <p>&copy; 2024 90 Day Cashflow Challenge. All Rights Reserved.</p>
-            </div>
         </div>
-
     </div>
     <!-- END FINAL FLOW WRAPPER -->
+
+    <!-- FOOTER SECTION (PRIVACY / TERMS) -->
+    <div class="footer-section">
+        <div class="container">
+            <div class="footer-links">
+                <!-- Replace # with real links -->
+                <a href="privacy.html" target="_blank">Privacy Policy</a>
+                <!-- Terms of Service Removed -->
+                <a href="mailto:info@cashflowchallenge.ai">Support</a>
+            </div>
+            <p>&copy; 2024 90 Day Cashflow Challenge. All Rights Reserved.</p>
+            <p class="disclaimer-text">
+                IMPORTANT: Earnings and Legal Disclaimers. Earnings and income representations made by 90 Day Cashflow Challenge, Brandon Duff, and their advertisers/sponsors are aspirational statements only of your earnings potential. These results are not typical and results will vary. The results on this page are OUR results and from years of testing. We can in NO way guarantee you will get similar results.
+            </p>
+        </div>
+    </div>
 
     <!-- SCRIPTS -->
     <script>
@@ -718,6 +740,3 @@
 
 </body>
 </html>
-
-
-
