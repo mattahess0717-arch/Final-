@@ -269,7 +269,7 @@
         .math-section { background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid #334155; padding: 40px; border-radius: 20px; margin: 60px auto; text-align: center; }
         .big-math { font-size: 32px; font-weight: 800; color: #fff; margin: 20px 0; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 1px dashed var(--accent); display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-        /* --- NEW TIMELINE CSS --- */
+        /* --- TIMELINE CSS --- */
         .timeline-wrapper { position: relative; padding-left: 30px; max-width: 800px; margin: 0 auto; }
         .timeline-wrapper::before { content: ''; position: absolute; top: 0; bottom: 0; left: 19px; width: 2px; background: #334155; }
         .timeline-step { position: relative; margin-bottom: 50px; }
@@ -355,9 +355,7 @@
         .card-freedom:hover { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
         .icon-gold { fill: var(--accent); }
 
-        .freedom-footer { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); color: var(--accent); font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
-
-        /* --- UPDATED STORY BOX STYLES --- */
+        /* --- STORIES BUBBLES --- */
         .stories-title {
             margin-top: 80px;
             margin-bottom: 40px;
@@ -376,10 +374,9 @@
         }
 
         .story-bubble {
-            /* RECTANGLE BOX SHAPE */
-            width: 160px;
-            height: 280px; /* 9:16 Aspect Ratio */
-            border-radius: 15px;
+            width: 160px; /* Rectangular Width */
+            height: 280px; /* Rectangular Height (9:16) */
+            border-radius: 15px; /* Rounded corners for the box */
             background-color: #334155;
             background-size: cover;
             background-position: center;
@@ -399,7 +396,7 @@
         .story-bubble:hover {
             border-color: var(--accent);
             box-shadow: 0 0 25px var(--accent-glow);
-            transform: scale(1.05); /* Slight scale up */
+            transform: scale(1.05);
         }
 
         /* Dark overlay for better play icon visibility */
@@ -407,7 +404,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.3); /* Darkens the image slightly */
+            background: rgba(0,0,0,0.3);
             z-index: 1;
             transition: 0.3s;
         }
@@ -604,7 +601,7 @@
             </div>
         </div>
 
-        <!-- NEW ROADMAP TIMELINE SECTION -->
+        <!-- ROADMAP TIMELINE SECTION -->
         <div class="container" style="padding-top: 60px; padding-bottom: 60px;">
             <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">Your Path To <span class="gradient-text">Success</span></h2>
             <p style="text-align: center; color: var(--text-gray); margin-bottom: 50px;">The exact roadmap we follow to hit $10k/mo in 90 days.</p>
@@ -757,36 +754,36 @@
                 
                 <!-- ============================================================== -->
                 <!-- 🚨 STEP 2: PASTE YOUR 6 STORY VIDEO LINKS BELOW                -->
+                <!-- AND ADD YOUR IMAGE LINKS IN THE style="url(...)" PART          -->
                 <!-- ============================================================== -->
 
                 <!-- Video 1 -->
-                <!-- REPLACE 'https://placehold.co/...' with your own image link -->
-                <a href="https://www.youtube.com/embed/q7AR9zd035k" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+1');">
+                <a href="https://www.youtube.com/embed/q7AR9zd035k" target="_blank" class="story-bubble" style="background-image: url('https://github.com/mattahess0717-arch/Final-/blob/main/Screenshot%202025-12-08%20140636.png?raw=true');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 2 -->
-                <a href="https://www.youtube.com/embed/_2pGMlmOdPs" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+2');">
+                <a href="https://www.youtube.com/embed/_2pGMlmOdPs" target="_blank" class="story-bubble" style="background-image: url('https://github.com/mattahess0717-arch/Final-/blob/main/Screenshot%202025-12-08%20140702.png?raw=true');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 3 -->
-                <a href="https://www.youtube.com/embed/fwE0AVAkzTA" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+3');">
+                <a href="https://www.youtube.com/embed/fwE0AVAkzTA" target="_blank" class="story-bubble" style="background-image: url('https://github.com/mattahess0717-arch/Final-/blob/main/Screenshot%202025-12-08%20140735.png?raw=true');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 4 -->
-                <a href="https://www.youtube.com/embed/NOKXcQXdie0" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+4');">
+                <a href="https://www.youtube.com/embed/NOKXcQXdie0" target="_blank" class="story-bubble" style="background-image: url('https://github.com/mattahess0717-arch/Final-/blob/main/Screenshot%202025-12-08%20140755.png?raw=true');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 5 -->
-                <a href="https://www.youtube.com/embed/uS7NdDC1Ijk" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+5');">
+                <a href="https://www.youtube.com/embed/uS7NdDC1Ijk" target="_blank" class="story-bubble" style="background-image: url('https://github.com/mattahess0717-arch/Final-/blob/main/Screenshot%202025-12-08%20140820.png?raw=true');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
                 
                 <!-- Video 6 -->
-                <a href="https://www.youtube.com/embed/Ak6tB1hujFU" target="_blank" class="story-bubble" style="background-image: url('https://placehold.co/320x560/334155/gold?text=Story+6');">
+                <a href="https://www.youtube.com/embed/Ak6tB1hujFU" target="_blank" class="story-bubble" style="background-image: url('https://github.com/mattahess0717-arch/Final-/blob/main/Screenshot%202025-12-08%20140839.png?raw=true');">
                     <svg class="play-icon-small" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </a>
 
@@ -827,11 +824,7 @@
                 <div class="check-item">✅ Accountability Coaching</div>
             </div>
             <a href="checkout.html" class="btn-main">YES! Start My $1 Trial Now &raquo;</a>
-            <div class="founder-signoff">
-                <p>&copy; 2024 90 Day Cashflow Challenge. All Rights Reserved.</p>
-            </div>
         </div>
-
     </div>
     <!-- END FINAL FLOW WRAPPER -->
 
