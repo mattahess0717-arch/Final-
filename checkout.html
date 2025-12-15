@@ -14,6 +14,7 @@
             --text-light: #f8fafc;
             --text-gray: #94a3b8;
             --border: #334155;
+            --gold: #FFD700;
         }
 
         body {
@@ -54,6 +55,23 @@
             padding: 5px 15px;
             border-radius: 50px;
             border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        /* NEW HEADLINE STYLES */
+        .main-headline {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 900;
+            margin: 40px auto 10px;
+            max-width: 900px;
+            line-height: 1.2;
+            padding: 0 20px;
+        }
+        .gradient-text {
+            background: linear-gradient(120deg, #FFD700 0%, #f59e0b 40%, #c084fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         /* LAYOUT GRID */
@@ -109,7 +127,6 @@
         .input-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; color: var(--text-gray); font-size: 14px; font-weight: 500; }
         
-        /* FIXED: Specific selector for text inputs only, ignoring checkbox */
         input[type="text"],
         input[type="email"],
         input[type="tel"] {
@@ -139,16 +156,15 @@
             border: 1px solid var(--border);
         }
         
-        /* FIXED: Restore appearance for checkbox and reset padding/width */
         .legal-checkbox input[type="checkbox"] {
             width: 24px;
             height: 24px;
-            min-width: 24px; /* prevents shrinking */
+            min-width: 24px;
             margin-top: 0;
             cursor: pointer;
-            appearance: auto; /* Restores browser checkmark logic */
-            -webkit-appearance: auto; /* For Safari/iOS */
-            padding: 0; /* Reset padding inherited from generic input */
+            appearance: auto;
+            -webkit-appearance: auto;
+            padding: 0;
             background: transparent;
         }
 
@@ -186,6 +202,35 @@
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
+        }
+
+        /* TRUST REASSURANCE BLOCK STYLES */
+        .trust-reassurance {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: grid;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .trust-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .trust-icon {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .trust-text {
+            opacity: 0.95;
+            color: #e2e8f0;
         }
 
         /* ORDER SUMMARY */
@@ -287,6 +332,8 @@
 
         /* 📱 MOBILE OPTIMIZATION */
         @media (max-width: 850px) {
+            .main-headline { font-size: 28px; margin-top: 30px; }
+            
             .checkout-container { 
                 grid-template-columns: 1fr; 
                 padding: 15px;
@@ -302,9 +349,9 @@
                 top: 0;
             }
 
-            .form-section {
-                padding: 20px;
-            }
+            .form-section { padding: 20px; }
+            
+            .trust-reassurance { font-size: 13px; }
 
             h1 { font-size: 32px; }
             
@@ -322,13 +369,9 @@
             .urgency-text { font-size: 13px; }
             .urgency-icon { font-size: 20px; }
 
-            /* FIXED: Removed sticky positioning and z-index issues on mobile */
             .btn-checkout {
                 font-size: 18px;
                 padding: 18px;
-                /* position: sticky;  <-- REMOVED THIS */
-                /* bottom: 10px;      <-- REMOVED THIS */
-                /* z-index: 90;       <-- REMOVED THIS */
                 margin-bottom: 10px;
             }
         }
@@ -345,6 +388,12 @@
     <div class="checkout-header">
         <div class="secure-badge">🔒 Secure 256-Bit SSL Encryption</div>
     </div>
+
+    <!-- NEW MAIN HEADLINE -->
+    <h1 class="main-headline">
+        Have your first revenue system <br>
+        <span class="gradient-text">live within 72 hours</span>
+    </h1>
 
     <div class="checkout-container">
         
@@ -387,9 +436,34 @@
             <button class="btn-checkout" id="submit-btn" onclick="handlePayment()">
                 Complete Order - $1.00
             </button>
+            
             <p style="text-align: center; font-size: 12px; color: var(--text-gray); margin-top: 15px;">
                 By clicking the button above, you agree to our Terms of Service.
             </p>
+
+            <!-- Trust & Security Reassurance Block -->
+            <div class="trust-reassurance">
+                <div class="trust-row">
+                    <span class="trust-icon">🔒</span>
+                    <span class="trust-text"><strong>Secure Checkout</strong> — 256-bit SSL encryption</span>
+                </div>
+
+                <div class="trust-row">
+                    <span class="trust-icon">💳</span>
+                    <span class="trust-text">Payments processed securely via <strong>Stripe</strong></span>
+                </div>
+
+                <div class="trust-row">
+                    <span class="trust-icon">🔁</span>
+                    <span class="trust-text"><strong>Cancel anytime</strong> — no contracts, no hidden fees</span>
+                </div>
+
+                <div class="trust-row">
+                    <span class="trust-icon">🛡️</span>
+                    <span class="trust-text">Your information is private and never shared</span>
+                </div>
+            </div>
+
         </div>
 
         <!-- RIGHT COLUMN: ORDER SUMMARY -->
