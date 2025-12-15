@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>You're In! - 90 Day Cashflow Challenge</title>
+
+    <!-- CALENDLY WIDGET SCRIPT -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --bg-card: #0f172a;
+            --primary: #3b82f6;
+            --accent: #4ade80; /* Green for success */
+            --gold: #FFD700;
+            --danger: #ef4444;
+            --text-light: #f8fafc;
+            --text-gray: #94a3b8;
+            --border: #334155;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at top center, #111827 0%, #020617 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            opacity: 0; 
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        body.loaded { opacity: 1; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* --- HEADINGS & TEXT --- */
+        h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .gradient-text {
+            background: linear-gradient(120deg, #4ade80 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .sub-headline {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--primary);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            text-align: left;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+        
+        .checklist li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 16px;
+            color: white;
+        }
+
+        .checklist svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* --- CALENDAR SECTION --- */
+        .calendar-section {
+            margin: 40px 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .calendar-headline {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* --- NEXT STEPS (Post Calendar) --- */
+        .next-steps-box {
+            margin-top: 30px;
+            text-align: left;
+            padding: 20px;
+            border-left: 4px solid var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        /* --- URGENCY BOX --- */
+        .urgency-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            color: #fca5a5;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 40px 0;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            text-align: left;
+            animation: pulse-border 2s infinite;
+        }
+        
+        .urgency-icon { font-size: 24px; flex-shrink: 0; margin-top: -3px; }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* --- INFO CARD (What happens) --- */
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .info-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: white;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .info-list li {
+            margin-bottom: 15px;
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+        
+        .info-list strong { color: white; }
+
+        /* FOOTER */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .container { padding: 20px; }
+            .highlight-box { padding: 20px; }
+            .info-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- HEADLINE SECTION -->
+        <h1>You’re In <span class="gradient-text">🎉</span><br>Let’s Get You Set Up for Cashflow</h1>
+        
+        <div class="highlight-box">
+            <p style="font-size: 18px; margin-bottom: 15px; color: white;">
+                <strong>⚠️ Your onboarding call is required to activate your software + training access.</strong>
+            </p>
+            <p style="font-size: 15px; color: var(--text-gray); margin-bottom: 15px;">This is where we:</p>
+            
+            <ul class="checklist">
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Get you logged into the platform
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Set up your account correctly
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Map out your first income plan
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Make sure you avoid beginner mistakes
+                </li>
+            </ul>
+        </div>
+
+        <!-- CALENDAR SECTION -->
+        <div class="calendar-section">
+            <h2 class="calendar-headline">Book My Onboarding Call Now</h2>
+            
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/gavinccie/30min?month=2025-12&hide_gdpr_banner=1&background_color=0f172a&text_color=ffffff&primary_color=3b82f6" style="min-width:320px;height:700px;"></div>
+            <!-- Calendly inline widget end -->
+        </div>
+
+        <!-- NEXT STEPS -->
+        <div class="next-steps-box">
+            <h3 style="margin: 0 0 10px 0; color: white;">👇 Your next step is simple: book the call above</h3>
+            <p style="margin: 0 0 10px 0; font-size: 14px; color: var(--text-gray);">Once booked, you’ll receive:</p>
+            <ul style="margin: 0; padding-left: 20px; color: var(--text-gray); font-size: 14px;">
+                <li>A confirmation email</li>
+                <li>A reminder before the call</li>
+                <li>Access instructions after onboarding</li>
+            </ul>
+        </div>
+
+        <!-- URGENCY WARNING -->
+        <div class="urgency-box">
+            <div class="urgency-icon">⚠️</div>
+            <div>
+                <strong style="color: #f87171; display: block; margin-bottom: 5px; font-size: 18px;">Important:</strong>
+                <span style="font-size: 15px; line-height: 1.5;">
+                    If you do not book your onboarding call within 48 hours, your setup will be delayed and your trial time will continue running.
+                </span>
+            </div>
+        </div>
+
+        <!-- WHAT HAPPENS INFO -->
+        <div class="info-card">
+            <div class="info-title">
+                <span>💬</span>
+                What Happens On The Call
+            </div>
+            
+            <p style="margin-bottom: 20px; font-size: 16px;">
+                This is <strong>NOT</strong> a sales call. It’s a setup + strategy call designed to help you:
+            </p>
+
+            <ul class="checklist info-list">
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <strong>Understand</strong> how the system actually makes money
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <strong>Know exactly</strong> what to do in your first 7 days
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <strong>Get answers</strong> specific to your situation
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    <strong>Leave with</strong> clear next steps
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="container" style="padding: 0;">
+            <p>&copy; 2024 90 Day Cashflow Challenge. All Rights Reserved.</p>
+            <div style="margin-top: 10px;">
+                <a href="#" style="color: var(--text-gray); text-decoration: none; margin: 0 10px;">Privacy Policy</a>
+                <a href="#" style="color: var(--text-gray); text-decoration: none; margin: 0 10px;">Terms of Service</a>
+                <a href="#" style="color: var(--text-gray); text-decoration: none; margin: 0 10px;">Support</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                document.body.classList.add("loaded");
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>
