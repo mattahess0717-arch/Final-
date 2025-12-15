@@ -57,7 +57,7 @@
             border: 1px solid rgba(74, 222, 128, 0.2);
         }
 
-        /* NEW HEADLINE STYLES */
+        /* HEADLINE STYLES */
         .main-headline {
             text-align: center;
             font-size: 42px;
@@ -82,6 +82,15 @@
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 40px;
+        }
+        
+        /* Container for Roadmap (Matches checkout width) */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
         }
 
         /* URGENCY BOX */
@@ -222,16 +231,8 @@
             gap: 10px;
             line-height: 1.4;
         }
-
-        .trust-icon {
-            font-size: 16px;
-            line-height: 1;
-        }
-
-        .trust-text {
-            opacity: 0.95;
-            color: #e2e8f0;
-        }
+        .trust-icon { font-size: 16px; line-height: 1; }
+        .trust-text { opacity: 0.95; color: #e2e8f0; }
 
         /* ORDER SUMMARY */
         .summary-card {
@@ -281,6 +282,31 @@
         .check-list-small { font-size: 14px; color: var(--text-gray); margin-top: 15px; }
         .check-item-small { margin-bottom: 8px; display: flex; gap: 8px; }
 
+        /* --- ROADMAP TIMELINE STYLES --- */
+        .timeline-wrapper { position: relative; padding-left: 30px; max-width: 800px; margin: 0 auto; }
+        .timeline-wrapper::before { content: ''; position: absolute; top: 0; bottom: 0; left: 19px; width: 2px; background: #334155; }
+        .timeline-step { position: relative; margin-bottom: 50px; }
+        .timeline-step:last-child { margin-bottom: 0; }
+        .t-marker { position: absolute; left: -30px; width: 40px; height: 40px; border-radius: 50%; background: #0f172a; border: 2px solid; display: flex; align-items: center; justify-content: center; font-size: 18px; z-index: 2; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        .t-content { background: var(--bg-card); border: 1px solid #334155; border-radius: 12px; padding: 25px; margin-left: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+        .t-content:hover { transform: translateX(5px); }
+        .t-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 5px; display: block; color:white; }
+        .t-day { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; opacity: 0.8; margin-bottom: 15px; display: block; }
+        .t-list { list-style: none; padding: 0; margin: 0 0 20px 0; }
+        .t-list li { margin-bottom: 8px; color: #cbd5e1; font-size: 0.95rem; display: flex; align-items: flex-start; }
+        .t-list li::before { content: '•'; margin-right: 10px; font-weight: bold; }
+        .t-goal { background: rgba(255, 255, 255, 0.05); padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; font-weight: 600; display: inline-block; width: 100%; border-left: 3px solid; }
+        
+        /* Timeline Colors */
+        .step-blue .t-marker { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); } .step-blue .t-title, .step-blue .t-day { color: #3b82f6; } .step-blue .t-goal { border-left-color: #3b82f6; color: #93c5fd; }
+        .step-green .t-marker { border-color: #22c55e; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); } .step-green .t-title, .step-green .t-day { color: #22c55e; } .step-green .t-goal { border-left-color: #22c55e; color: #86efac; }
+        .step-yellow .t-marker { border-color: #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.4); } .step-yellow .t-title, .step-yellow .t-day { color: #eab308; } .step-yellow .t-goal { border-left-color: #eab308; color: #fde047; }
+        .step-orange .t-marker { border-color: #f97316; box-shadow: 0 0 15px rgba(249, 115, 22, 0.4); } .step-orange .t-title, .step-orange .t-day { color: #f97316; } .step-orange .t-goal { border-left-color: #f97316; color: #fdba74; }
+        .step-purple .t-marker { border-color: #a855f7; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); } .step-purple .t-title, .step-purple .t-day { color: #a855f7; } .step-purple .t-goal { border-left-color: #a855f7; color: #d8b4fe; }
+        
+        @media(max-width: 600px) { .timeline-wrapper { padding-left: 0; } .timeline-wrapper::before { left: 20px; } .t-marker { left: 0; } .t-content { margin-left: 55px; padding: 15px; } }
+
+        /* --- BOTTOM SECTION --- */
         .bottom-section {
             max-width: 1100px;
             margin: 0 auto 60px;
@@ -350,7 +376,6 @@
             }
 
             .form-section { padding: 20px; }
-            
             .trust-reassurance { font-size: 13px; }
 
             h1 { font-size: 32px; }
@@ -501,18 +526,128 @@
 
     </div>
 
+    <!-- ROADMAP TIMELINE SECTION (INSERTED HERE) -->
+    <div class="container" style="padding-top: 20px; padding-bottom: 60px;">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">Your Path To <span class="gradient-text">Success</span></h2>
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 50px;">The exact roadmap we follow to hit $10k/mo in 90 days.</p>
+
+        <div class="timeline-wrapper">
+            
+            <!-- STEP 1 (BLUE) -->
+            <div class="timeline-step step-blue">
+                <div class="t-marker">1</div>
+                <div class="t-content">
+                    <span class="t-day">Day 1</span>
+                    <span class="t-title">Onboarding & Setup</span>
+                    <ul class="t-list">
+                        <li>Welcome call</li>
+                        <li>Login to software + course</li>
+                        <li>Install core tools + integrations</li>
+                        <li>Success plan customized for YOU</li>
+                    </ul>
+                    <div class="t-goal">📌 Goal: You know exactly what to do each day</div>
+                </div>
+            </div>
+
+            <!-- STEP 2 (GREEN) -->
+            <div class="timeline-step step-green">
+                <div class="t-marker">2</div>
+                <div class="t-content">
+                    <span class="t-day">Day 1–3</span>
+                    <span class="t-title">Learn & Implement</span>
+                    <ul class="t-list">
+                        <li>Watch the core course modules</li>
+                        <li>Set up DM scripts + pipeline</li>
+                        <li>Practice conversation flow</li>
+                        <li>Start booking early interest</li>
+                    </ul>
+                    <div class="t-goal">📌 Goal: Break the ice & start conversations</div>
+                </div>
+            </div>
+
+            <!-- STEP 3 (YELLOW) -->
+            <div class="timeline-step step-yellow">
+                <div class="t-marker">3</div>
+                <div class="t-content">
+                    <span class="t-day">Day 2–3</span>
+                    <span class="t-title">Launch Your Funnel</span>
+                    <ul class="t-list">
+                        <li>Website/funnel goes live</li>
+                        <li>Automations ready</li>
+                        <li>Offer messaging dialed in</li>
+                        <li>Tracking & analytics connected</li>
+                    </ul>
+                    <div class="t-goal">📌 Goal: You’re officially open for business</div>
+                </div>
+            </div>
+
+            <!-- STEP 4 (ORANGE) -->
+            <div class="timeline-step step-orange">
+                <div class="t-marker">4</div>
+                <div class="t-content">
+                    <span class="t-day">Day 3</span>
+                    <span class="t-title">First Sale</span>
+                    <ul class="t-list">
+                        <li>Outbound messaging goes live</li>
+                        <li>Calls booked</li>
+                        <li>First commission hit 💰🔥</li>
+                    </ul>
+                    <div class="t-goal">📌 Goal: Break the ice → win #1</div>
+                </div>
+            </div>
+
+            <!-- STEP 5 (PURPLE) -->
+            <div class="timeline-step step-purple">
+                <div class="t-marker">5</div>
+                <div class="t-content">
+                    <span class="t-day">Weeks 1–2</span>
+                    <span class="t-title">Show Off Your Wins 🚀</span>
+                    <ul class="t-list">
+                        <li>Post wins in community</li>
+                        <li>Scale message volume</li>
+                        <li>Rank up commissions</li>
+                        <li>Build recurring revenue</li>
+                        <li>Rinse & repeat for bigger weeks</li>
+                    </ul>
+                    <div class="t-goal">📌 Goal: Momentum = Money → Become a top closer</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <!-- BOTTOM SECTION -->
     <div class="bottom-section">
         <h2 class="section-title">Included In Your Trial</h2>
         <div class="inclusions-grid">
+            
+            <!-- 1-ON-1 COACHING BUBBLE -->
             <div class="inclusion-card">
                 <div class="inc-check">✔</div>
                 <div class="inc-content">
-                    <h4>The "Snapshot"</h4>
-                    <p>We upload the entire business website and automation into your account instantly.</p>
+                    <h4>1-on-1 Coaching</h4>
+                    <p>We work with you personally to ensure you hit your first sale within 14 days.</p>
                 </div>
             </div>
-            <!-- Additional items here... -->
+
+            <!-- SOFTWARE BUBBLE -->
+            <div class="inclusion-card">
+                <div class="inc-check">✔</div>
+                <div class="inc-content">
+                    <h4>Software Included</h4>
+                    <p>Get a free GoHighLevel account with the entire system and snapshot pre-loaded for you.</p>
+                </div>
+            </div>
+
+            <!-- COMMUNITY BUBBLE -->
+            <div class="inclusion-card">
+                <div class="inc-check">✔</div>
+                <div class="inc-content">
+                    <h4>Private Community</h4>
+                    <p>Join a network of members doing the exact same thing, communicating daily to help each other win.</p>
+                </div>
+            </div>
+
         </div>
 
         <h2 class="section-title">What Members Are Saying</h2>
@@ -586,3 +721,5 @@
     </script>
 </body>
 </html>
+</html>
+
